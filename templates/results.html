@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %} - Results{% endblock %}
+
+{% block content %}
+<div class="slide-screen results-screen">
+
+  <div class="slide-content text-center results-content">
+
+    <div class="score-ring">
+      <!-- circumference = 2 * pi * 52 = 326.73, starts at top (rotate -90deg via CSS) -->
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" class="score-svg">
+        <circle cx="60" cy="60" r="52" fill="none" stroke="#e8f5df" stroke-width="10"/>
+        <circle cx="60" cy="60" r="52" fill="none" stroke="#6BAF45" stroke-width="10"
+                stroke-dasharray="0 326.73"
+                data-full="{{ (score / total * 326.73) | round(2) }}"
+                stroke-linecap="round"
+                class="score-arc"/>
+      </svg>
+      <div class="score-label">
+        <span class="score-num">{{ score }}</span><span class="score-denom">/{{ total }}</span>
+      </div>
+    </div>
+
+    {% if score == total %}
+    <h1 class="slide-title results-title">Perfect! 🎉</h1>
+    <p class="slide-body results-body">
+      You correctly identified matcha quality using color, texture, and foam.<br>
+      You've got a true matcha eye!
+    </p>
+    {% else %}
+    <h1 class="slide-title results-title">Good Try! 🌱</h1>
+    <p class="slide-body results-body">
+      Review the lessons and try again to improve your matcha grading skills.<br>
+      Every steep is a step forward.
+    </p>
+    {% endif %}
+
+    <div class="results-actions">
+      <form action="{{ url_for('start') }}" method="POST" class="d-inline">
+        <input type="hidden" name="destination" value="quiz">
+        <button type="submit" class="btn-mg btn-mg-primary">Try Again</button>
+      </form>
+      <a href="{{ url_for('home') }}" class="btn-mg btn-mg-ghost">Back to Home</a>
+    </div>
+
+  </div>
+
+</div>
+{% endblock %}

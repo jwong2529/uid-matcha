@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %} - Home{% endblock %}
+
+{% block content %}
+<div class="home-screen">
+
+  <!-- Hero text -->
+  <div class="home-hero text-center">
+    <div class="home-badge">Visual Grading Guide</div>
+    <h1 class="home-title">Welcome to<br><span class="accent-text">Matcha Grader</span></h1>
+    <p class="home-subtitle">Learn to grade matcha quality using just your eyes.<br>Choose where to start:</p>
+  </div>
+
+  <!-- Cards row -->
+  <div class="home-cards">
+
+    <!-- Learn card -->
+    <div class="mg-card home-card" id="card-learn">
+      <h2 class="card-title">Learn</h2>
+      <p class="card-desc">Color, texture &amp; grade basics</p>
+      <form action="{{ url_for('start') }}" method="POST">
+        <input type="hidden" name="destination" value="learn">
+        <button type="submit" class="btn-mg btn-mg-primary w-100">Start →</button>
+      </form>
+    </div>
+
+    <!-- Quiz card -->
+    <div class="mg-card home-card" id="card-quiz">
+      <h2 class="card-title">Quiz</h2>
+      <p class="card-desc">Test your matcha eye</p>
+      <form action="{{ url_for('start') }}" method="POST">
+        <input type="hidden" name="destination" value="quiz">
+        <button type="submit" class="btn-mg btn-mg-secondary w-100">Start →</button>
+      </form>
+    </div>
+
+  </div>
+
+
+</div>
+{% endblock %}

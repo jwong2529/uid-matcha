@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+{% block title %} - Lesson {{ lesson_num }}{% endblock %}
+
+{% block content %}
+<div class="slide-screen lesson-screen">
+
+  <!-- Progress bar -->
+  <div class="slide-progress-wrap">
+    <div class="slide-progress-bar" style="width: {{ (lesson_num / total_lessons * 100) | int }}%"></div>
+    <span class="slide-progress-label">{{ lesson_num }} / {{ total_lessons }}</span>
+  </div>
+
+  <!-- FINAL SLIDE -->
+  {% if lesson.type == 'final' %}
+  <div class="slide-content text-center final-slide">
+    <h1 class="slide-title">{{ lesson.title }}</h1>
+    {% for para in lesson.content %}
+    <p class="slide-body">{{ para }}</p>
+    {% endfor %}
+    <a href="{{ url_for('quiz', question_num=1) }}" class="btn-mg btn-mg-primary btn-lg mt-4">
+      Ready to Practice →
+    </a>
+  </div>
+
+  <!-- GRADES SLIDE -->
+  {% elif lesson.type == 'grades' %}
+  <div class="slide-content">
+    <h1 class="slide-title">{{ lesson.title }}</h1>
+    {% if lesson.subtitle %}
+    <p class="slide-body text-muted mb-4">{{ lesson.subtitle }}</p>
+    {% endif %}
+    <div class="grades-grid">
+      {% for g in lesson.grades %}
+      <div class="grade-card">
+        <img src="{{ url_for('static', filename=g.img) }}" alt="{{ g.name }} matcha powder" class="grade-img"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div class="grade-img-fallback" style="background:{{ g.color }};display:none;"></div>
+        <div class="grade-label">{{ g.label }}</div>
+        <div class="grade-name">{{ g.name }}</div>
+        <div class="grade-desc">{{ g.desc }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- SUMMARY SLIDE -->
+  {% elif lesson.type == 'summary' %}
+  <div class="slide-content">
+    <h1 class="slide-title">{{ lesson.title }}</h1>
+    <div class="summary-box">
+      <ul class="summary-list">
+        {% for bullet in lesson.bullets %}
+        <li>{{ bullet }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <!-- DRINKS SLIDE -->
+  {% elif lesson.type == 'drinks' %}
+  <div class="slide-content">
+    <h1 class="slide-title">{{ lesson.title }}</h1>
+    <div class="drinks-layout">
+      <div class="drinks-text">
+        {% for para in lesson.content %}
+        <p class="slide-body">{{ para }}</p>
+        {% endfor %}
+        {% if lesson.tip %}
+        <div class="tip-box">
+          <span class="tip-icon">💡</span>
+          <em>Tip: {{ lesson.tip }}</em>
+        </div>
+        {% endif %}
+      </div>
+      <div class="drinks-compare">
+        <div class="drink-card">
+          <img src="{{ url_for('static', filename=lesson.img_ceremonial) }}" alt="Ceremonial grade matcha drink - vivid jade green"
+               class="drink-img">
+          <div class="drink-caption">Ceremonial Grade<br><span>Vivid jade green</span></div>
+        </div>
+        <div class="drink-card">
+          <img src="{{ url_for('static', filename=lesson.img_culinary) }}" alt="Culinary grade matcha drink - muted yellowish green"
+               class="drink-img">
+          <div class="drink-caption">Culinary Grade<br><span>Muted, yellowish green</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOAM SLIDE -->
+  {% elif lesson.type == 'foam' %}
+  <div class="slide-content">
+    <h1 class="slide-title">{{ lesson.title }}</h1>
+    <div class="foam-layout">
+      <div class="foam-text">
+        {% for para in lesson.content %}
+        <p class="slide-body">{{ para }}</p>
+        {% endfor %}
+      </div>
+      <div class="foam-visual">
+        <img src="{{ url_for('static', filename=lesson.img) }}" alt="Matcha with dense creamy foam from high quality ceremonial grade"
+             class="foam-img">
+        <div class="foam-callout">
+          <div class="foam-row">
+            <span class="foam-dot foam-dot-good"></span>
+            <span><strong>High grade:</strong> Dense, creamy froth with tiny uniform bubbles - forms within seconds and holds shape</span>
+          </div>
+          <div class="foam-row" style="margin-top:10px;">
+            <span class="foam-dot foam-dot-bad"></span>
+            <span><strong>Low grade:</strong> Flat, foam-free surface - coarser particles cannot hold air when whisked</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEXT SLIDES (lesson 1 & 2) -->
+  {% else %}
+  <div class="slide-content">
+    <h1 class="slide-title">{{ lesson.title }}</h1>
+
+    {% if lesson.has_gradient is defined and lesson.has_gradient %}
+    <div class="color-gradient-bar">
+      <div class="gradient-track"></div>
+      <div class="gradient-labels">
+        <span>Deep Emerald</span>
+        <span>Vibrant Green</span>
+        <span>Muted Green</span>
+        <span>Yellow Green</span>
+        <span>Dull Olive</span>
+      </div>
+      <div class="gradient-ends">
+        <span>&#x2191; Highest Grade</span>
+        <span>Lowest Grade &#x2191;</span>
+      </div>
+    </div>
+    {% endif %}
+
+    {% for para in lesson.content %}
+    <p class="slide-body">{{ para }}</p>
+    {% endfor %}
+
+    {% if lesson.tip is defined and lesson.tip %}
+    <div class="tip-box">
+      <span class="tip-icon">&#x1F4A1;</span>
+      <em>Tip: {{ lesson.tip }}</em>
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <!-- Navigation -->
+  <div class="slide-nav">
+    {% if prev_num %}
+    <a href="{{ url_for('learn', lesson_num=prev_num) }}" class="btn-mg btn-mg-ghost">&larr; Back</a>
+    {% else %}
+    <a href="{{ url_for('home') }}" class="btn-mg btn-mg-ghost">&larr; Home</a>
+    {% endif %}
+
+    {% if lesson.type != 'final' %}
+      {% if next_num %}
+      <a href="{{ url_for('learn', lesson_num=next_num) }}" class="btn-mg btn-mg-primary">Next &rarr;</a>
+      {% endif %}
+    {% endif %}
+  </div>
+
+</div>
+{% endblock %}

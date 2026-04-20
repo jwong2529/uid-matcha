@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %} - Feedback{% endblock %}
+
+{% block content %}
+<div class="slide-screen feedback-screen {% if is_correct %}feedback-correct{% else %}feedback-incorrect{% endif %}">
+
+  <!-- Progress bar -->
+  <div class="slide-progress-wrap">
+    <div class="slide-progress-bar" style="width: {{ (question_num / total_questions * 100) | int }}%"></div>
+    <span class="slide-progress-label">{{ question_num }} / {{ total_questions }}</span>
+  </div>
+
+  <div class="slide-content feedback-content">
+
+    <h1 class="slide-title feedback-title">{{ feedback.title }}</h1>
+
+    {% if feedback.tip is defined and feedback.tip %}
+    <div class="tip-box tip-box-top">
+      <span class="tip-icon">💡</span>
+      <em>{{ feedback.tip }}</em>
+    </div>
+    {% endif %}
+
+    <p class="slide-body">{{ feedback.body }}</p>
+
+    <!-- Correct answer callout -->
+    {% if not is_correct %}
+    <div class="correct-callout">
+      Correct answer: <strong>
+        {% for opt in question.options %}
+          {% if opt.key == question.correct %}{{ opt.text }}{% endif %}
+        {% endfor %}
+      </strong>
+    </div>
+    {% endif %}
+
+  </div>
+
+  <!-- Navigation -->
+  <div class="slide-nav">
+    <span></span>
+    {% if is_last %}
+    <a href="{{ url_for('results') }}" class="btn-mg btn-mg-primary">See Your Result →</a>
+    {% else %}
+    <a href="{{ url_for('quiz', question_num=next_num) }}" class="btn-mg btn-mg-primary">Next Question →</a>
+    {% endif %}
+  </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block title %} - Quiz {{ question_num }}/{{ total_questions }}{% endblock %}
+
+{% block content %}
+<div class="slide-screen quiz-screen">
+
+  <!-- Progress bar -->
+  <div class="slide-progress-wrap">
+    <div class="slide-progress-bar" style="width: {{ (question_num / total_questions * 100) | int }}%"></div>
+    <span class="slide-progress-label">{{ question_num }} / {{ total_questions }}</span>
+  </div>
+
+  <div class="slide-content">
+    <h1 class="slide-title">{{ question.title }}</h1>
+    <p class="slide-body quiz-instruction">{{ question.text }}</p>
+
+    <form action="{{ url_for('answer', question_num=question_num) }}" method="POST" id="quiz-form">
+
+      <!-- Q1: IMAGE CHOICE - single matcha photo, two answer buttons -->
+      {% if question.type == 'image_choice' %}
+      <div class="q1-layout">
+        <div class="q1-image-wrap">
+          <img
+            src="{{ url_for('static', filename='img/quiz_q1.jpg') }}"
+            alt="A pile of bright emerald-green matcha powder - is this ceremonial or culinary grade?"
+            class="q1-photo"
+          >
+          <div class="q1-photo-caption">Examine the color and texture of this matcha sample.</div>
+        </div>
+        <div class="quiz-options">
+          {% for opt in question.options %}
+          <button type="submit" name="answer" value="{{ opt.key }}"
+                  class="btn-mg option-btn btn-mg-outline w-100 mb-3">
+            <span class="option-key-badge">{{ opt.key }}</span>
+            {{ opt.text }}
+          </button>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Q2: RANK CHOICE - three real powder photos + radio options -->
+      {% elif question.type == 'rank_choice' %}
+      <div class="rank-layout">
+        <div class="rank-samples">
+          <img
+            src="{{ url_for('static', filename='img/quiz_q2.jpg') }}"
+            alt="Three matcha powder samples side by side for ranking"
+            class="rank-photo-full"
+          >
+        </div>
+        <p class="rank-hint">Look closely at the color depth and how fine or grainy each powder appears.</p>
+        <div class="quiz-options">
+          {% for opt in question.options %}
+          <label class="option-label" for="opt-{{ opt.key }}">
+            <input type="radio" name="answer" id="opt-{{ opt.key }}" value="{{ opt.key }}" required>
+            <span class="option-key">{{ opt.key }}</span>
+            <span class="option-text">{{ opt.text }}</span>
+          </label>
+          {% endfor %}
+          <button type="submit" class="btn-mg btn-mg-primary w-100 mt-3">Submit →</button>
+        </div>
+      </div>
+
+      <!-- Q3: BOWL CHOICE - combined image split into two halves -->
+      {% elif question.type == 'bowl_choice' %}
+      <div class="bowl-layout">
+        <div class="bowl-compare">
+          <div class="bowl-item">
+            <div class="bowl-photo-crop bowl-photo-left">
+              <img src="{{ url_for('static', filename='img/quiz_q3.jpg') }}" alt="Bowl X - ceremonial grade matcha with foam" class="bowl-photo-half">
+            </div>
+            <div class="bowl-label-text">Bowl X</div>
+            <div class="bowl-clue">Vivid jade green &bull; fine creamy foam</div>
+            <button type="submit" name="answer" value="A"
+                    class="btn-mg btn-mg-outline w-100 mt-2">Select Bowl X</button>
+          </div>
+          <div class="bowl-divider"></div>
+          <div class="bowl-item">
+            <div class="bowl-photo-crop bowl-photo-right">
+              <img src="{{ url_for('static', filename='img/quiz_q3.jpg') }}" alt="Bowl Y - culinary grade matcha, flat surface" class="bowl-photo-half">
+            </div>
+            <div class="bowl-label-text">Bowl Y</div>
+            <div class="bowl-clue">Muted olive-brown &bull; flat, no foam</div>
+            <button type="submit" name="answer" value="B"
+                    class="btn-mg btn-mg-outline w-100 mt-2">Select Bowl Y</button>
+          </div>
+        </div>
+      </div>
+
+      {% endif %}
+
+    </form>
+  </div>
+
+  <!-- Back nav -->
+  <div class="slide-nav">
+    {% if question_num > 1 %}
+    <a href="{{ url_for('quiz', question_num=question_num-1) }}" class="btn-mg btn-mg-ghost">&larr; Back</a>
+    {% else %}
+    <a href="{{ url_for('home') }}" class="btn-mg btn-mg-ghost">&larr; Home</a>
+    {% endif %}
+    <span></span>
+  </div>
+
+</div>
+{% endblock %}
