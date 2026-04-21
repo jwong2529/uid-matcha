@@ -214,7 +214,7 @@ html, body {
 
 /* ── SLIDE SCREEN (shared) ──────────────────────────────────────────────────── */
 .slide-screen {
-  min-height: calc(100vh - 52px);
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   padding: 32px 24px 24px;
@@ -560,6 +560,8 @@ html, body {
   background: linear-gradient(160deg, #ffffff 0%, #f0f8e8 60%, #e8f5df 100%);
   align-items: center;
   justify-content: center;
+  max-width: none;
+  margin: 0;
 }
 
 .results-content {

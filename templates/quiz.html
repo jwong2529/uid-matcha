@@ -21,8 +21,8 @@
       <div class="q1-layout">
         <div class="q1-image-wrap">
           <img
-            src="{{ url_for('static', filename='img/quiz_q1.jpg') }}"
-            alt="A pile of bright emerald-green matcha powder - is this ceremonial or culinary grade?"
+            src="{{ url_for('static', filename=question.img) }}"
+            alt="{{ question.alt }}"
             class="q1-photo"
           >
           <div class="q1-photo-caption">Examine the color and texture of this matcha sample.</div>
@@ -43,8 +43,8 @@
       <div class="rank-layout">
         <div class="rank-samples">
           <img
-            src="{{ url_for('static', filename='img/quiz_q2.jpg') }}"
-            alt="Three matcha powder samples side by side for ranking"
+            src="{{ url_for('static', filename=question.img) }}"
+            alt="{{ question.alt }}"
             class="rank-photo-full"
           >
         </div>
@@ -67,7 +67,7 @@
         <div class="bowl-compare">
           <div class="bowl-item">
             <div class="bowl-photo-crop bowl-photo-left">
-              <img src="{{ url_for('static', filename='img/quiz_q3.jpg') }}" alt="Bowl X - ceremonial grade matcha with foam" class="bowl-photo-half">
+              <img src="{{ url_for('static', filename=question.img) }}" alt="{{ question.alt_left }}" class="bowl-photo-half">
             </div>
             <div class="bowl-label-text">Bowl X</div>
             <div class="bowl-clue">Vivid jade green &bull; fine creamy foam</div>
@@ -77,7 +77,7 @@
           <div class="bowl-divider"></div>
           <div class="bowl-item">
             <div class="bowl-photo-crop bowl-photo-right">
-              <img src="{{ url_for('static', filename='img/quiz_q3.jpg') }}" alt="Bowl Y - culinary grade matcha, flat surface" class="bowl-photo-half">
+              <img src="{{ url_for('static', filename=question.img) }}" alt="{{ question.alt_right }}" class="bowl-photo-half">
             </div>
             <div class="bowl-label-text">Bowl Y</div>
             <div class="bowl-clue">Muted olive-brown &bull; flat, no foam</div>
