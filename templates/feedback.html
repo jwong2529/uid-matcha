@@ -4,7 +4,6 @@
 {% block content %}
 <div class="slide-screen feedback-screen {% if is_correct %}feedback-correct{% else %}feedback-incorrect{% endif %}">
 
-  <!-- Progress bar -->
   <div class="slide-progress-wrap">
     <div class="slide-progress-bar" style="width: {{ (question_num / total_questions * 100) | int }}%"></div>
     <span class="slide-progress-label">{{ question_num }} / {{ total_questions }}</span>
@@ -16,7 +15,7 @@
 
     {% if feedback.tip is defined and feedback.tip %}
     <div class="tip-box tip-box-top">
-      <span class="tip-icon">💡</span>
+      <span class="tip-icon"></span>
       <em>{{ feedback.tip }}</em>
     </div>
     {% endif %}

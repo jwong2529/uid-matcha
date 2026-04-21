@@ -15,7 +15,8 @@ LESSONS = [
             "The single most reliable visual indicator of matcha quality is color.",
             "High-grade ceremonial matcha is a deep, vibrant green. Lower-grade culinary matcha shifts toward yellow-green or olive tones. This happens because premium matcha is shade-grown longer, producing more chlorophyll."
         ],
-        "has_gradient": True
+        "has_gradient": True,
+        "img": "img/lesson1_types.jpg"
     },
     {
         "id": 2,
@@ -26,13 +27,9 @@ LESSONS = [
             "Ceremonial matcha is stone-ground to particles around 5–10 microns - finer than baby powder. It feels silky between your fingers. Culinary matcha has larger, grittier particles that are visible to the naked eye.",
             "A quick 'smear test' on paper can reveal the difference."
         ],
-        "has_gradient": False
-    },
-    {
-        "id": 3,
-        "title": "Summary",
-        "type": "summary",
-        "bullets": [
+        "has_gradient": False,
+        "img": "img/lesson2_texture.jpg",
+        "summary_bullets": [
             "Color: Deep emerald green = high grade, yellow-olive = low grade",
             "Texture: Silky fine powder = ceremonial, visible grains = culinary",
             "Smear test: Smooth streak (good) vs grainy line (low)"

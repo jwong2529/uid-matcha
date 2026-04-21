@@ -67,7 +67,7 @@
         {% endfor %}
         {% if lesson.tip %}
         <div class="tip-box">
-          <span class="tip-icon">💡</span>
+          <span class="tip-icon"></span>
           <em>Tip: {{ lesson.tip }}</em>
         </div>
         {% endif %}
@@ -139,6 +139,23 @@
     {% for para in lesson.content %}
     <p class="slide-body">{{ para }}</p>
     {% endfor %}
+
+    {% if lesson.img is defined and lesson.img %}
+    <div class="lesson-img-wrap">
+      <img src="{{ url_for('static', filename=lesson.img) }}" alt="{{ lesson.title }}" class="lesson-img">
+    </div>
+    {% endif %}
+
+    {% if lesson.summary_bullets is defined and lesson.summary_bullets %}
+    <div class="summary-box mt-3">
+      <h3 class="summary-title">Summary</h3>
+      <ul class="summary-list">
+        {% for bullet in lesson.summary_bullets %}
+        <li>{{ bullet }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
 
     {% if lesson.tip is defined and lesson.tip %}
     <div class="tip-box">
