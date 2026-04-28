@@ -215,6 +215,51 @@
           "tip": "In whisked matcha, froth quality is a bonus visual indicator on top of color."
         }
       }
+    },
+    {
+      "id": 4,
+      "title": "Rank the Swipe Test",
+      "text": "Rank these three matcha swipe samples from lowest to highest grade.",
+      "type": "rank_choice",
+      "img": "img/quiz_q4_swipe.svg",
+      "alt": "Three matcha finger swipes on white paper, with the dullest sample on the left and the brightest sample on the right",
+      "position_labels": [
+        "Left",
+        "Middle",
+        "Right"
+      ],
+      "hint": "Look for the dullest, grainiest swipe first and the smoothest, most vivid green swipe last.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Left < Middle < Right"
+        },
+        {
+          "key": "B",
+          "text": "Left < Right < Middle"
+        },
+        {
+          "key": "C",
+          "text": "Middle < Left < Right"
+        },
+        {
+          "key": "D",
+          "text": "Right < Middle < Left"
+        }
+      ],
+      "correct": "A",
+      "feedback": {
+        "correct": {
+          "title": "You are correct! 🎉",
+          "body": "The left swipe is the weakest because it looks duller and more broken. The middle swipe is smoother and greener, while the right swipe is the most vivid and even, which points to the highest grade.",
+          "tip": "Higher-grade matcha usually looks more saturated and leaves a smoother, more continuous swipe."
+        },
+        "incorrect": {
+          "title": "You are wrong! 😭",
+          "body": "Correct answer: Left < Middle < Right. The left swipe is the dullest and most uneven, the middle swipe is cleaner and brighter, and the right swipe is the smoothest and most vibrant of the three.",
+          "tip": "Higher-grade matcha usually looks more saturated and leaves a smoother, more continuous swipe."
+        }
+      }
     }
   ]
 }

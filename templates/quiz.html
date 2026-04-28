@@ -25,7 +25,7 @@
             alt="{{ question.alt }}"
             class="q1-photo"
           >
-          <div class="q1-photo-caption">Examine the color and texture of this matcha sample.</div>
+          <div class="q1-photo-caption">{{ question.caption | default('Examine the color and texture of this matcha sample.') }}</div>
         </div>
         <div class="quiz-options">
           {% for opt in question.options %}
@@ -48,7 +48,13 @@
             class="rank-photo-full"
           >
         </div>
-        <p class="rank-hint">Look closely at the color depth and how fine or grainy each powder appears.</p>
+        {% set position_labels = question.position_labels if question.position_labels is defined else ['Left', 'Middle', 'Right'] %}
+        <div class="rank-labels-row">
+          {% for label in position_labels %}
+          <span class="rank-label">{{ label }}</span>
+          {% endfor %}
+        </div>
+        <p class="rank-hint">{{ question.hint | default('Look closely at the color depth and how fine or grainy each powder appears.') }}</p>
         <div class="quiz-options">
           {% for opt in question.options %}
           <label class="option-label" for="opt-{{ opt.key }}">
