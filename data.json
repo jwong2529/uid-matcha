@@ -261,5 +261,69 @@
         }
       }
     }
+    ,
+    {
+      "id": 4,
+      "title": "Fresh or Oxidized?",
+      "text": "One of these matcha samples has been improperly stored and is now oxidized. Which one should you avoid buying — and why?",
+      "type": "oxidized_choice",
+      "img": "img/quiz_q4.jpg",
+      "alt_left": "Sample A - fresh vibrant green matcha powder",
+      "alt_right": "Sample B - dull yellowish oxidized matcha powder",
+      "options": [
+        {
+          "key": "A",
+          "text": "Sample A — the brighter one"
+        },
+        {
+          "key": "B",
+          "text": "Sample B — the duller one"
+        }
+      ],
+      "correct": "B",
+      "feedback": {
+        "correct": {
+          "title": "You are correct! 🎉",
+          "body": "Sample B is oxidized. Its dull, yellowish-olive color is a clear sign that it has been exposed to air, light, or heat — all enemies of fresh matcha. High-quality matcha should always look vivid and emerald green, not khaki or straw-colored.",
+          "tip": "Always check the color before buying. Dull or brownish-green powder means the chlorophyll has degraded — and so has the flavor."
+        },
+        "incorrect": {
+          "title": "You are wrong! 😭",
+          "body": "Sample A is actually the fresh, high-quality matcha. Its vivid emerald green comes from intact chlorophyll. Sample B's yellow-olive tone is a telltale sign of oxidation from improper storage — light, heat, or air exposure.",
+          "tip": "Always check the color before buying. Dull or brownish-green powder means the chlorophyll has degraded — and so has the flavor."
+        }
+      }
+    },
+    {
+      "id": 5,
+      "title": "The Paper Smear Test",
+      "text": "Two matcha samples were smeared across white paper. Which streak belongs to the higher-grade ceremonial matcha?",
+      "type": "smear_choice",
+      "img": "img/quiz_q5.jpg",
+      "alt": "Two matcha smear streaks on white paper — one smooth and vibrant green, one grainy and dull",
+      "options": [
+        {
+          "key": "A",
+          "text": "Streak A — smooth and even"
+        },
+        {
+          "key": "B",
+          "text": "Streak B — grainy and uneven"
+        }
+      ],
+      "correct": "A",
+      "feedback": {
+        "correct": {
+          "title": "You are correct! 🎉",
+          "body": "Streak A is from ceremonial-grade matcha. Its smooth, even, vibrant green smear means the powder is ground to an ultra-fine particle size — around 5–10 microns. You can see no individual grains, just a clean, rich color.",
+          "tip": "Try this at home! A quick paper smear test reveals a lot about texture and freshness without any special equipment."
+        },
+        "incorrect": {
+          "title": "You are wrong! 😭",
+          "body": "Streak A is actually the ceremonial-grade sample. Its smooth, unbroken green streak shows ultra-fine grinding. Streak B's rough, grainy appearance is from culinary-grade matcha with larger particles — visible even on paper.",
+          "tip": "Try this at home! A quick paper smear test reveals a lot about texture and freshness without any special equipment."
+        }
+      }
+    }
   ]
 }
