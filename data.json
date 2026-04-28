@@ -260,24 +260,23 @@
           "tip": "Higher-grade matcha usually looks more saturated and leaves a smoother, more continuous swipe."
         }
       }
-    }
-    ,
+    },
     {
-      "id": 4,
+      "id": 5,
       "title": "Fresh or Oxidized?",
       "text": "One of these matcha samples has been improperly stored and is now oxidized. Which one should you avoid buying — and why?",
       "type": "oxidized_choice",
-      "img": "img/quiz_q4.jpg",
+      "img": "img/quiz_q5_oxidized.svg",
       "alt_left": "Sample A - fresh vibrant green matcha powder",
       "alt_right": "Sample B - dull yellowish oxidized matcha powder",
       "options": [
         {
           "key": "A",
-          "text": "Sample A — the brighter one"
+          "text": "Sample A - the brighter one"
         },
         {
           "key": "B",
-          "text": "Sample B — the duller one"
+          "text": "Sample B - the duller one"
         }
       ],
       "correct": "B",
@@ -295,20 +294,20 @@
       }
     },
     {
-      "id": 5,
+      "id": 6,
       "title": "The Paper Smear Test",
       "text": "Two matcha samples were smeared across white paper. Which streak belongs to the higher-grade ceremonial matcha?",
       "type": "smear_choice",
-      "img": "img/quiz_q5.jpg",
-      "alt": "Two matcha smear streaks on white paper — one smooth and vibrant green, one grainy and dull",
+      "img": "img/quiz_q6_smear.svg",
+      "alt": "Two matcha smear streaks on white paper - one smooth and vibrant green, one grainy and dull",
       "options": [
         {
           "key": "A",
-          "text": "Streak A — smooth and even"
+          "text": "Streak A - smooth and even"
         },
         {
           "key": "B",
-          "text": "Streak B — grainy and uneven"
+          "text": "Streak B - grainy and uneven"
         }
       ],
       "correct": "A",
