@@ -87,6 +87,54 @@
         </div>
       </div>
 
+      <!-- Q4: OXIDIZED CHOICE - two-panel image comparison, direct submit buttons -->
+      {% elif question.type == 'oxidized_choice' %}
+      <div class="bowl-layout">
+        <div class="bowl-compare">
+          <div class="bowl-item">
+            <div class="bowl-photo-crop bowl-photo-left">
+              <img src="{{ url_for('static', filename=question.img) }}" alt="{{ question.alt_left }}" class="bowl-photo-half">
+            </div>
+            <div class="bowl-label-text">Sample A</div>
+            <div class="bowl-clue">Vivid emerald green &bull; fresh looking</div>
+            <button type="submit" name="answer" value="A"
+                    class="btn-mg btn-mg-outline w-100 mt-2">Select Sample A</button>
+          </div>
+          <div class="bowl-divider"></div>
+          <div class="bowl-item">
+            <div class="bowl-photo-crop bowl-photo-right">
+              <img src="{{ url_for('static', filename=question.img) }}" alt="{{ question.alt_right }}" class="bowl-photo-half">
+            </div>
+            <div class="bowl-label-text">Sample B</div>
+            <div class="bowl-clue">Dull yellow-olive &bull; faded color</div>
+            <button type="submit" name="answer" value="B"
+                    class="btn-mg btn-mg-outline w-100 mt-2">Select Sample B</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q5: SMEAR CHOICE - single image showing two paper streak samples -->
+      {% elif question.type == 'smear_choice' %}
+      <div class="q1-layout">
+        <div class="q1-image-wrap">
+          <img
+            src="{{ url_for('static', filename=question.img) }}"
+            alt="{{ question.alt }}"
+            class="q1-photo"
+          >
+          <div class="q1-photo-caption">Examine the texture and color of each smear streak.</div>
+        </div>
+        <div class="quiz-options">
+          {% for opt in question.options %}
+          <button type="submit" name="answer" value="{{ opt.key }}"
+                  class="btn-mg option-btn btn-mg-outline w-100 mb-3">
+            <span class="option-key-badge">{{ opt.key }}</span>
+            {{ opt.text }}
+          </button>
+          {% endfor %}
+        </div>
+      </div>
+
       {% endif %}
 
     </form>
